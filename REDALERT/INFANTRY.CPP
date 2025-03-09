@@ -378,6 +378,17 @@ ResultType InfantryClass::Take_Damage(int & damage, int distance, WarheadType wa
 			sound = altsound = VOC_DOG_HURT;
 		}
 
+        // Try to create a crate next to the infantry's position
+        CELL cell = Coord_Cell(this->Coord);	
+        CELL adjacentCell = 0;
+        for (FacingType direction = FACING_N; direction < FACING_COUNT; direction++) {
+            adjacentCell = Adjacent_Cell(cell, direction);
+            if (Map.In_Radar(adjacentCell) && Map.Place_Crate(adjacentCell)) {
+                break;
+            }
+        }	
+		
+
 		/*
 		**	The type of warhead determines the animation the infantry
 		**	will perform when killed.

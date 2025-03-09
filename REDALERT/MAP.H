@@ -78,6 +78,7 @@ class MapClass: public GScreenClass
 		bool Read_Binary(Straw & straw);
 		int Write_Binary(Pipe & pipe);
 		bool Place_Random_Crate(void);
+		bool Place_Crate(CELL cell);
 		bool Remove_Crate(CELL cell);
 		bool Zone_Reset(int method);
 		bool Zone_Cell(CELL cell, int zone);

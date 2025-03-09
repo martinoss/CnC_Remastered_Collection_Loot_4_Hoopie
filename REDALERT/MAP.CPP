@@ -1206,6 +1206,38 @@ bool MapClass::Place_Random_Crate(void)
 	return(false);
 }
 
+/***********************************************************************************************
+ * MapClass::Place_Crate -- Places a crate at the specified cell.                              *
+ *                                                                                             *
+ *    This routine will place a crate at the specified cell on the map. If there are           *
+ *    no free slots for crates, it will return false.                                          *
+ *                                                                                             *
+ * INPUT:   cell  -- The cell to place the crate at.                                           *
+ *                                                                                             *
+ * OUTPUT:  Was a crate successfully placed?                                                   *
+ *                                                                                             *
+ * WARNINGS:   none                                                                            *
+ *                                                                                             *
+ * HISTORY:                                                                                    *
+ *   03/09/2025 User : Created.                                                                *
+ *=============================================================================================*/
+
+bool MapClass::Place_Crate(CELL cell)
+{
+    int crateindex = 0;
+    for (crateindex = 0; crateindex < ARRAY_SIZE(Crates); crateindex++) {
+        if (!Crates[crateindex].Is_Valid()) break;
+    }
+    if (crateindex == ARRAY_SIZE(Crates)) {
+        return false;
+    }
+
+    if (Crates[crateindex].Create_Crate(cell)) {
+        return true;
+    }
+    return false;
+}
+
 
 /***********************************************************************************************
  * MapClass::Remove_Crate -- Remove a crate from the specified cell.                           *

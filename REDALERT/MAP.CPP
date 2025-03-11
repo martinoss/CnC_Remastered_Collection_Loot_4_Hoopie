@@ -1011,7 +1011,8 @@ void MapClass::Logic(void)
 		for (int index = 0; index < ARRAY_SIZE(Crates); index++) {
 			if (Crates[index].Is_Expired()) {
 				Crates[index].Remove_It();
-				Place_Random_Crate();
+				// Do not replace creates after expiration. Infantry death gives enough crates.
+				// Place_Random_Crate();
 			}
 		}
 	}
